@@ -4,6 +4,7 @@ import Loading from '../pages/Loading';
 import { getUser } from '../services/userAPI';
 
 class Header extends Component {
+  // O constructor é a primeira etapa do ciclo de vida de um componente React.
   constructor() {
     super();
     this.state = {
@@ -11,10 +12,12 @@ class Header extends Component {
       loading: true,
     };
   }
+  // A segunda etapa do ciclo de vida é o componentDidMount().  Ela é rodada uma única vez, assim que o componente aparece na tela. Coloquei dentro dela a função assíncrona fetchName.
 
   componentDidMount() {
     this.fetchName();
   }
+  // A promisse é o getUser, dentro dela altero a state inicial, para que quando carregada a página, o loading seja false e o user receba os dados da promisse.
 
   async fetchName() {
     const result = await getUser();
@@ -24,6 +27,7 @@ class Header extends Component {
     });
   }
 
+  // Se o loading for true, return <Loading />; caso contrário, retorne o conteúdo do <header>.
   render() {
     const { user, loading } = this.state;
     return (

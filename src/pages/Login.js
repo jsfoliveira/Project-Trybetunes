@@ -53,7 +53,7 @@ class Login extends Component {
 
   render() {
     const { name, isLoginButtonDisabled, loading, isLoggedIn } = this.state;
-    // Se o loading for true, quer dizer que o name condiz com os dados da promisse, então vai liberar o acesso. Se não for, então vai retornar para a página do Login. Se o loading for true e estiver logado, então vai renderizar o <Redirect>, que navegará para outro local; caso contrário, irá renderizar o <Loading>
+    // Se o loading for true, quer dizer que o name condiz com os dados da promisse, então vai liberar o acesso, vai redicionar para a página /search; caso contrário, irá renderizar o <Loading>
     // Eu aprendi sobre o <Redirect> nesse site: v5-reactrouter-com.
     if (loading === true) {
       return isLoggedIn ? <Redirect to="/search" /> : <Loading />;
