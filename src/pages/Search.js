@@ -57,6 +57,7 @@ validateForm = () => {
     return (
       <div data-testid="page-search">
         <Header />
+        {/* Enquanto aguarda a resposta da API, esconda o input e o botão de pesquisa e exiba a mensagem Carregando... na tela. */}
         {loading
           ? <Loading />
           : (
