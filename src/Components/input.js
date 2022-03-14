@@ -15,7 +15,7 @@ class Input extends Component {
     this.favorite();
   }
 
-  // REQUISITO 8: eu precisei fazer uma função fora para quando o checkbox for checked, o state do favorite fique true, isso quer dizer que.
+  // REQUISITO 8: eu precisei fazer uma função fora para quando o checkbox for checked, o state do favorite fique true, isso quer dizer que. Usei nessa função as props criadas no componente MusicCard.
   favorite = () => {
     const { favs, music } = this.props;
     favs.forEach((e) => {

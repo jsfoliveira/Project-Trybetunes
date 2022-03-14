@@ -4,7 +4,7 @@ import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from '../pages/Loading';
 import Input from './input';
 
-// REQUISITO 8: O state inicial é aparecer a mensagem 'carregando...' e o array de objeto vazio (que vai guardar o conjunto de produtos checked).
+// REQUISITO 8: O state inicial é aparecer a mensagem 'carregando...' e o array de objeto vazio (que vai guardar o conjunto de músicas checked).
 class MusicCard extends Component {
   constructor() {
     super();
@@ -14,19 +14,18 @@ class MusicCard extends Component {
     };
   }
 
-  // REQUISITO 9
-  async componentDidMount() {
-    await this.takingStorage();
-    this.setState({
-      loading: false,
-    });
+  // REQUISITO 9: Essa função takingStorage só pode ser chamada depois que o usuário clicar no checkbox da música.
+  componentDidMount() {
+    this. favoritesStorage();
   }
 
-  // REQUISITO 9
-  takingStorage = async () => {
+  // REQUISITO 9: o musicFavorites vai pegar todas as músicas que eu coloquei checked no ckeckbox e vai botar todas elas nesse array de objetos getFavoriteSongs. Eu atribui esse resultado no checked.
+  favoritesStorage = async () => {
     const musicFavorites = await getFavoriteSongs();
+    console.log(musicFavorites);
     this.setState({
       checked: musicFavorites,
+      loading: false,
     });
   }
 
@@ -49,6 +48,7 @@ class MusicCard extends Component {
     });
   }
 
+  // musics é a props que contém completedAlbum, que contém todas as informações das músicas do álbum. Eu fiz um map para criar cada item da minha página.
   render() {
     const { musics } = this.props;
     const { loading, checked } = this.state;
@@ -64,7 +64,7 @@ class MusicCard extends Component {
                 {' '}
                 <code>audio</code>
               </audio>
-
+{/* Esse componente Input irá conter o input contendo o checkbox, usado para favoritar uma música. */}
               <Input
                 music={ music }
                 savingMusics={ this.saveMusic }
